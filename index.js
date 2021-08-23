@@ -12,7 +12,8 @@ const data = {
     { x: 5, y: 4, length: 4, answer: "COKI" },
   ],
   downClues: [
-    { x: 5, y: 2, length: 3, answer: "ABI" },
+    { x: 5, y: 2, length: 3, answer: "DCC" },
+    { x: 2, y: 2, length: 7, answer: "AALALAL" },
     { x: 10, y: 4, length: 8, answer: "LALALALA" },
   ],
 };
@@ -32,47 +33,66 @@ app.get("/", (req, res) => {
 });
 
 app.get("/score", (req, res) => {
-  connection.connect();
+  connection.query(
+    `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC`,
+    function (err, rows, fields) {
+      console.log(rows);
+      res.send(rows);
+    }
+  );
+});
 
-  let hasil = [];
+app.post("/checkUsername", (req, res) => {
+  console.log(req.body);
 
-  connection.query(`SELECT * FROM hasil`, function (err, rows, fields) {
-    if (err) throw err;
-    hasil = rows;
-    console.log(rows);
-  });
-
-  connection.end();
-  res.send(hasil);
+  connection.query(
+    `INSERT INTO hasil (username) VALUES ('${req.body.username}')`,
+    function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+        res
+          .status(400)
+          .send({ success: false, message: "query error", error: err });
+      } else {
+        res.status(200).send(req.body.username);
+      }
+    }
+  );
 });
 
 app.post("/submit", (req, res) => {
   console.log(req.body);
-  const answer = req.body;
-  let nilai = 0;
+  const username = req.body.username;
+  const answers = req.body.answers;
+  let score = 0;
 
   //check jawaban
-  answer.acrossAnswers.forEach((answer, index) => {
-    console.log(answer);
-    console.log(data.acrossClues[index].answer);
+  answers.acrossAnswers.forEach((answer, index) => {
+    console.log(answer.toLowerCase());
+    console.log(data.acrossClues[index].answer.toLocaleLowerCase());
 
-    if (answer === data.acrossClues[index].answer) {
-      nilai++;
+    if (answer.toLowerCase() === data.acrossClues[index].answer.toLowerCase()) {
+      score++;
     }
   });
 
-  connection.connect();
+  answers.downAnswers.forEach((answer, index) => {
+    console.log(answer.toLowerCase());
+    console.log(data.downClues[index].answer.toLocaleLowerCase());
+
+    if (answer.toLowerCase() === data.downClues[index].answer.toLowerCase()) {
+      score++;
+    }
+  });
 
   connection.query(
-    `INSERT INTO hasil (username, score) VALUES ('user',${nilai})`,
+    `UPDATE hasil SET score=${score}, time=now() WHERE username='${username}'`,
     function (err, rows, fields) {
       if (err) throw err;
     }
   );
 
-  connection.end();
-
-  res.send("nilai " + nilai);
+  res.send("nilai " + score);
 });
 
 app.listen(port, () => {
