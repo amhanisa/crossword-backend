@@ -4,19 +4,7 @@ const mysql = require("mysql");
 const app = express();
 const port = 3000;
 
-const data = {
-  height: 15,
-  width: 15,
-  acrossClues: [
-    { x: 2, y: 2, length: 4, answer: "ABAD" },
-    { x: 5, y: 4, length: 4, answer: "COKI" },
-  ],
-  downClues: [
-    { x: 5, y: 2, length: 3, answer: "DCC" },
-    { x: 2, y: 2, length: 7, answer: "AALALAL" },
-    { x: 10, y: 4, length: 8, answer: "LALALALA" },
-  ],
-};
+const data = require("./data.json");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -34,7 +22,7 @@ app.get("/", (req, res) => {
 
 app.get("/score", (req, res) => {
   connection.query(
-    `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC`,
+    `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC LIMIT 10`,
     function (err, rows, fields) {
       console.log(rows);
       res.send(rows);

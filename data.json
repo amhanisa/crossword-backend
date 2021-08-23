@@ -1,0 +1,32 @@
+{
+  "height": 15,
+  "width": 15,
+  "acrossClues": [
+    { "x": 2, "y": 2, "length": 4, "clue": "100 Tahun", "answer": "ABAD" },
+    {
+      "x": 5,
+      "y": 4,
+      "length": 4,
+      "clue": "Teman Tretan Muslim",
+      "answer": "COKI"
+    }
+  ],
+  "downClues": [
+    {
+      "x": 5,
+      "y": 2,
+      "length": 3,
+      "clue": "Digital to Analog Converter",
+      "answer": "DAC"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "length": 7,
+      "clue": "Persamaan atau persesuaian antara dua benda",
+      "answer": "ANALOGI"
+    },
+    { "x": 10, "y": 4, "length": 8, "clue": "lalalala", "answer": "lalalala" },
+    { "x": 12, "y": 4, "length": 8, "clue": "lalalala", "answer": "lalalala" }
+  ]
+}
