@@ -46,6 +46,19 @@ app.get("/score", (req, res) => {
   });
 });
 
+app.get("/winner", (req, res) => {
+  pool.getConnection((err, connection) => {
+    connection.query(
+      `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC`,
+      function (err, rows, fields) {
+        console.log(rows);
+        res.send(rows);
+        connection.release();
+      }
+    );
+  });
+});
+
 app.post("/checkUsername", (req, res) => {
   console.log(req.body);
 

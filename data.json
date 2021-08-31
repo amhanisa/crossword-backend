@@ -1,32 +1,50 @@
 {
-  "height": 15,
-  "width": 15,
+  "height": 12,
+  "width": 12,
   "acrossClues": [
-    { "x": 2, "y": 2, "length": 4, "clue": "100 Tahun", "answer": "ABAD" },
     {
       "x": 5,
-      "y": 4,
+      "y": 1,
+      "length": 6,
+      "clue": "Salah satu produk dari PT Pupuk Kujang",
+      "answer": "NITREA"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "length": 9,
+      "clue": "Makna Perisai pada Logo Pupuk Kujang",
+      "answer": "PELINDUNG"
+    },
+    {
+      "x": 3,
+      "y": 8,
       "length": 4,
-      "clue": "Teman Tretan Muslim",
-      "answer": "COKI"
+      "clue": "PT Pupuk Kujang didirikan pada 9 _ _ _ _ 1975",
+      "answer": "JUNI"
     }
   ],
   "downClues": [
     {
-      "x": 5,
-      "y": 2,
-      "length": 3,
-      "clue": "Digital to Analog Converter",
-      "answer": "DAC"
+      "x": 6,
+      "y": 1,
+      "length": 9,
+      "clue": "PT Pupuk Kujang merupakan anak perusahaan dari PT Pupuk",
+      "answer": "INDONESIA"
     },
     {
-      "x": 2,
+      "x": 4,
       "y": 2,
-      "length": 7,
-      "clue": "Persamaan atau persesuaian antara dua benda",
-      "answer": "ANALOGI"
+      "length": 3,
+      "clue": "Salah satu Bahan baku utama dalam proses produksi Urea",
+      "answer": "AIR"
     },
-    { "x": 10, "y": 4, "length": 8, "clue": "lalalala", "answer": "lalalala" },
-    { "x": 12, "y": 4, "length": 8, "clue": "lalalala", "answer": "lalalala" }
+    {
+      "x": 4,
+      "y": 7,
+      "length": 4,
+      "clue": "Badan Usaha Milik Negara",
+      "answer": "BUMN"
+    }
   ]
 }
