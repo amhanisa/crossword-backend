@@ -36,7 +36,7 @@ app.get("/getCrossword", (req, res) => {
 app.get("/score", (req, res) => {
   pool.getConnection((err, connection) => {
     connection.query(
-      `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC LIMIT 10`,
+      `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC LIMIT 5`,
       function (err, rows, fields) {
         console.log(rows);
         res.send(rows);
