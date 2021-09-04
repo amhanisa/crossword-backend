@@ -52,8 +52,18 @@ app.get("/winner", (req, res) => {
       `SELECT * FROM hasil WHERE score is not null ORDER BY score DESC, time ASC`,
       function (err, rows, fields) {
         console.log(rows);
-        res.send(rows);
-        connection.release();
+
+        const users = rows;
+        connection.query(
+          `SELECT COUNT(*) as count FROM hasil`,
+          function (err, rows, fields) {
+            console.log(rows);
+
+            const count = rows;
+            res.send({ users: users, count: count });
+            connection.release();
+          }
+        );
       }
     );
   });
